@@ -35,4 +35,4 @@ while(isset($json['nextPageToken'])){
 		$videos[] = $video;
 }
 
-file_put_contents(dirname(__FILE__) . '/youtube.json', json_encode($videos));
+file_put_contents(dirname(__FILE__) . '/../application/tmp/youtube.json', json_encode($videos));

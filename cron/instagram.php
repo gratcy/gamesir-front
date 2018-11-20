@@ -18,5 +18,5 @@ function fetchData($url){
 $data = fetchData($profileUrl);
 $data = preg_match('/window\.\_sharedData\s=\s(.*)\;<\/script>/i', $data, $matches);
 var_dump(json_decode($matches[1], true));
-file_put_contents(dirname(__FILE__) . '/instagram.json', json_encode(json_decode($matches[1], true)));
+file_put_contents(dirname(__FILE__) . '/../application/tmp/instagram.json', json_encode(json_decode($matches[1], true)));
 die;

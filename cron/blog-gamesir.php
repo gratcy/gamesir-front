@@ -18,5 +18,5 @@ function fetchData($url){
 }
 $data = fetchData($profileUrl);
 $Json = json_encode(simplexml_load_string($data, "SimpleXMLElement", LIBXML_NOCDATA));
-file_put_contents(dirname(__FILE__) . '/blog-gamesir.json', $Json);
+file_put_contents(dirname(__FILE__) . '/../application/tmp/blog-gamesir.json', $Json);
 die;
