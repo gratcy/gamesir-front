@@ -12,7 +12,9 @@ class Home extends MX_Controller {
 		if (!$id) redirect(base_url());
 		$data['data'] = $this -> Products_model -> __get_products_detail($id);
 		$data['related'] = $this -> Products_model -> __get_products_related();
+		$data['desc'] = !empty($data['data'][0] -> gfeatured) ? $data['data'][0] -> gfeatured : $data['data'][0] -> gtitle;
 		$data['title'] = $data['data'][0] -> gtitle;
+		$data['ogImage'] = __get_upload_file($data['data'][0] -> gfile,2);
 		$this->load->view('products', $data);
 	}
 
@@ -40,6 +42,7 @@ class Home extends MX_Controller {
 			$data['title'] = $category[0] -> cname;
 		}
 
+		$data['desc'] = 'Collections ' . $data['title'] . ' | ' . $this -> config -> config['site']['title'];
 		$this->load->view('collections', $data);
 	}
 
@@ -64,6 +67,7 @@ class Home extends MX_Controller {
 			$data['title'] = $data['data'][0] -> cname;
 		}
 		
+		$data['desc'] = 'Collections ' . $data['title'] . ' | ' . $this -> config -> config['site']['title'];
 		$this->load->view('collections-list', $data);
 	}
 }

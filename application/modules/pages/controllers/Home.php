@@ -12,6 +12,7 @@ class Home extends MX_Controller {
 	{
 		$data['data'] = $this -> Pages_model -> __get_pages_detail($id);
 		$data['title'] = $data['data'][0] -> ptitle;
+		$data['desc'] = $data['data'][0] -> ptitle;
 		$this->load->view('pages', $data);
 	}
 }
