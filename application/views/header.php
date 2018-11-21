@@ -8,11 +8,11 @@
     <title><?php echo (isset($title) ? $title . ' | ' : '')  . $this -> config -> config['site']['title']; ?></title>
 
     <meta name="keywords" content="<?php echo (isset($title) ? $title . ' | ' : '')  . $this -> config -> config['site']['title']; ?>" />
-    <meta name="description" content="<?php echo (isset($desc) ? $desc : ''); ?>" />
+    <meta name="description" content="<?php echo (isset($desc) ? $desc : $this -> config -> config['site']['title']); ?>" />
     <meta name="author" content="SW-THEMES">
     <meta property="og:title" content="<?php echo (isset($title) ? $title . ' | ' : '')  . $this -> config -> config['site']['title']; ?>" />
     <meta property="og:url" content="<?php echo base_url($_SERVER['REQUEST_URI']);?>" />
-    <meta property="og:description" content="<?php echo (isset($desc) ? $desc : ''); ?>">
+    <meta property="og:description" content="<?php echo (isset($desc) ? $desc : $this -> config -> config['site']['title']); ?>">
     <meta property="og:image" content="<?php echo isset($ogImage) ? $ogImage : base_url('assets/images/logo-dark-2.png'); ?>">
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="gameSir" />
