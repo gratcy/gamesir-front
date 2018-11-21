@@ -15,6 +15,7 @@
     <meta property="og:description" content="<?php echo (isset($desc) ? $desc : $this -> config -> config['site']['title']); ?>">
     <meta property="og:image" content="<?php echo isset($ogImage) ? $ogImage : base_url('assets/images/logo-black-2.png'); ?>">
     <meta property="og:type" content="article" />
+    <meta property="og:image:alt" content="<?php echo (isset($title) ? $title : $this -> config -> config['site']['title']); ?>" />
     <meta property="og:site_name" content="gameSir" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>">
