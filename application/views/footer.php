@@ -16,7 +16,7 @@
                                     <a href="https://www.facebook.com/GameSirIndonesia/" class="social-icon" target="_blank"><i class="icon-facebook"></i></a>
                                     <a href="https://www.instagram.com/gamesir.id/" class="social-icon" target="_blank"><i class="icon-instagram"></i></a>
                                     <a href="https://twitter.com/gamesirid" class="social-icon" target="_blank"><i class="icon-twitter"></i></a>
-                                    <a href="https://www.youtube.com/channel/UCZhblvtYPVNoxR6APnRpbCA" class="social-icon" target="_blank"><i class="icon-video"></i></a>
+                                    <a href="https://www.youtube.com/channel/UCZhblvtYPVNoxR6APnRpbCA" class="social-icon" target="_blank"><img src="<?php echo base_url('assets/images/category-icons/youtube.png'); ?>" style="width: 50%"></a>
                                 </div><!-- End .social-icons -->
                             </div><!-- End .widget -->
                         </div><!-- End .col-lg-3 -->

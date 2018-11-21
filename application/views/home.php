@@ -22,25 +22,25 @@
                     <ul class="nav category-list-nav">
                         <li class="nav-item red">
                             <a href="#cat-1" class="nav-link">
-                                <span class="cat-list-icon"><img src="<?php echo base_url('assets/images/category-icons/toys.svg'); ?>" width="24" alt="Category Name"></span>
+                                <span class="cat-list-icon"><img src="<?php echo base_url('assets/images/category-icons/gamepad.png'); ?>" width="32" alt="Category Name"></span>
                                 <span class="cat-list-text">Products</span>
                             </a>
                         </li>
                         <li class="nav-item lime">
                             <a href="#cat-2" class="nav-link">
-                                <span class="cat-list-icon"><img src="<?php echo base_url('assets/images/category-icons/home.svg'); ?>" width="32" alt="Category Name"></span>
+                                <span class="cat-list-icon"><img src="<?php echo base_url('assets/images/category-icons/youtube.png'); ?>" width="32" alt="Category Name"></span>
                                 <span class="cat-list-text">Youtube</span>
                             </a>
                         </li>
                         <li class="nav-item blue">
                             <a href="#cat-3" class="nav-link">
-                                <span class="cat-list-icon"><img src="<?php echo base_url('assets/images/category-icons/decor.svg'); ?>" width="25" alt="Category Name"></span>
+                                <span class="cat-list-icon"><img src="<?php echo base_url('assets/images/category-icons/instagram.png'); ?>" width="25" alt="Category Name"></span>
                                 <span class="cat-list-text">Instagram</span>
                             </a>
                         </li>
                         <li class="nav-item gray">
                             <a href="#cat-4" class="nav-link">
-                                <span class="cat-list-icon"><img src="<?php echo base_url('assets/images/category-icons/sports.svg'); ?>" width="24" alt="Category Name"></span>
+                                <span class="cat-list-icon"><img src="<?php echo base_url('assets/images/category-icons/blog.png'); ?>" width="24" alt="Category Name"></span>
                                 <span class="cat-list-text">Blog</span>
                             </a>
                         </li>

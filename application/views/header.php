@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title><?php echo (isset($title) ? $title . ' | ' : '')  . $this -> config -> config['site']['title']; ?></title>
+    <title><?php echo (!empty($title) ? $title . ' | ' : '')  . $this -> config -> config['site']['title']; ?></title>
 
-    <meta name="keywords" content="<?php echo (isset($title) ? $title . ' | ' : '')  . $this -> config -> config['site']['title']; ?>" />
-    <meta name="description" content="<?php echo (isset($desc) ? $desc : $this -> config -> config['site']['title']); ?>" />
+    <meta name="keywords" content="<?php echo (!empty($title) ? $title . ' | ' : '')  . $this -> config -> config['site']['title']; ?>" />
+    <meta name="description" content="<?php echo (!empty($desc) ? $desc : $this -> config -> config['site']['title']); ?>" />
     <meta name="author" content="SW-THEMES">
-    <meta property="og:title" content="<?php echo (isset($title) ? $title . ' | ' : '')  . $this -> config -> config['site']['title']; ?>" />
+    <meta property="og:title" content="<?php echo (!empty($title) ? $title . ' | ' : '')  . $this -> config -> config['site']['title']; ?>" />
     <meta property="og:url" content="<?php echo base_url($_SERVER['REQUEST_URI']);?>" />
-    <meta property="og:description" content="<?php echo (isset($desc) ? $desc : $this -> config -> config['site']['title']); ?>">
-    <meta property="og:image" content="<?php echo isset($ogImage) ? $ogImage : base_url('assets/images/logo-black-2.png'); ?>">
+    <meta property="og:description" content="<?php echo (!empty($desc) ? $desc : $this -> config -> config['site']['title']); ?>">
+    <meta property="og:image" itemprop="image" content="<?php echo !empty($ogImage) ? $ogImage : base_url('assets/images/logo-black-2.png'); ?>">
     <meta property="og:type" content="article" />
-    <meta property="og:image:alt" content="<?php echo (isset($title) ? $title : $this -> config -> config['site']['title']); ?>" />
+    <meta property="og:image:alt" content="<?php echo (!empty($title) ? $title : $this -> config -> config['site']['title']); ?>" />
     <meta property="og:site_name" content="gameSir" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>">
