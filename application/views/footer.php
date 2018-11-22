@@ -24,18 +24,11 @@
                         <div class="col-lg-4">
                             <div class="widget">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <h4 class="widget-title">Contact Info</h4>
                                         <ul class="contact-info">
                                             <li>
-                                                <span class="contact-info-label">Address:</span>Citra Garden 1 Blok E1 No.3, Kalideres, Jakarta Barat, 11840, Indonesia
-                                            </li>
-                                        </ul>
-                                    </div><!-- End .col-sm-6 -->
-                                    <div class="col-sm-6">
-                                        <ul class="contact-info">
-                                            <li>
-                                                <span class="contact-info-label">Phone:</span>Toll Free <a href="tel:">(+62) 817 1900 21</a>
+                                                <span class="contact-info-label">Phone:</span><a href="tel:">(+62) 882 1101 0000</a>
                                             </li>
                                             <li>
                                                 <span class="contact-info-label">Email:</span> <a href="mailto:ask@gamesir.id">ask@gamesir.id</a>
