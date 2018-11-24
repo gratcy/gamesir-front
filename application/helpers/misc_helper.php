@@ -1,11 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 function __get_date($str, $type=1) {
-	$str = strtotime($str);
-	if ($type == 1) return date('d/m/Y', $str);
-	elseif ($type == 2) return date('d ',$str).__get_month(date('m',$str)).date(' Y', $str);
-	elseif ($type == 3) return date('d/m/Y H:i', $str);
-	elseif ($type == 4) return date('d/m/Y H:i:s', $str);
+    $str = strtotime($str);
+    if ($type == 1) return date('d/m/Y', $str);
+    elseif ($type == 2) return date('d ',$str).__get_month(date('m',$str)).date(' Y', $str);
+    elseif ($type == 3) return date('d/m/Y H:i', $str);
+    elseif ($type == 4) return date('d/m/Y H:i:s', $str);
     elseif ($type == 5) return date('d ',$str).__get_month(date('m',$str)).date(' Y H:i',$str);
     else return __get_day(date('Y-m-d', $str)) . ', ' . date('d/m/Y', $str);
 }
@@ -14,11 +14,11 @@ function __get_upload_file($file, $type=1) {
     $CI =& get_instance();
     if (!$file) return '';
     if ($type == 1)
-		return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['media']['path'] . $file;
-	elseif ($type == 2)
-		return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['gallery']['path'] . $file;
+        return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['media']['path'] . $file;
+    elseif ($type == 2)
+        return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['gallery']['path'] . $file;
     elseif ($type == 3)
-		return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['slideshow']['path'] . $file;
+        return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['slideshow']['path'] . $file;
     elseif ($type == 4)
         return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['testimonial']['path'] . $file;
     else
@@ -79,7 +79,16 @@ function __get_menus() {
 
 function __grep_image_url($html) {
     preg_match_all("/src=[\"\']?([^\"\']?.*(png|jpg|gif))[\"\']?/i",$html, $result);
-    if (!empty($result[1][0])) return $result[1][0];
+    if (!empty($result[1][0])) {
+        return $result[1][0];
+    }
+    else {
+        preg_match_all('/src="([^"]+)"/',$html, $result);
+        if (!empty($result[0][0])) {
+            preg_match('/(http(s|):|)\/\/(www\.|)yout(.*?)\/(embed\/|watch.*?v=|)([a-z_A-Z0-9\-]{11})/i', $result[0][0], $results);
+            if (!empty($results[6])) return 'https://img.youtube.com/vi/'.$results[6].'/0.jpg';
+        }
+    }
 }
 
 function __limit_word($text, $limit) {

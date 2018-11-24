@@ -60,7 +60,7 @@
 
                         <div class="header-contact">
                             <i class="icon-phone"></i>
-                            <a href="tel:#">(+62) 817 1900 21</a>
+                            <a href="tel:#">(+62) 882 1101 0000</a>
                         </div><!-- End .header-contact -->
                     </div><!-- End .header-right -->
                 </div><!-- End .container-fluid -->

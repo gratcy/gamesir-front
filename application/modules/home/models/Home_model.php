@@ -11,7 +11,7 @@ class Home_model extends CI_Model {
 	}
 
     function __get_products() {
-		$sql = $this -> db -> query("SELECT * FROM products_tab WHERE gstatus=1 ORDER BY gid DESC LIMIT 20", FALSE);
+		$sql = $this -> db -> query("SELECT * FROM products_tab WHERE gstatus=1 ORDER BY gid DESC LIMIT 10", FALSE);
 		return $sql -> result();
 	}
 

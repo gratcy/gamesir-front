@@ -115,8 +115,12 @@
                                 $YoutubeFile = FCPATH . 'application/tmp/youtube.json';
                                 if (file_exists($YoutubeFile)) :
                                     $dataYoutube = json_decode(file_get_contents($YoutubeFile), true);
-                                    $dataYoutube = array_slice($dataYoutube, -5);
+                                    $finalDataYoutube = [];
                                     foreach ($dataYoutube as $key => $value) :
+                                        if (!empty($value['kind'])) $finalDataYoutube[] = $value;
+                                    endforeach;
+                                    $finalDataYoutube = array_slice($finalDataYoutube, 0, 5);
+                                    foreach ($finalDataYoutube as $key => $value) :
                                 ?>
                                 <div class="product">
                                     <figure class="product-image-container">
@@ -177,7 +181,7 @@
                                 if (file_exists($instagramFile)) :
                                     $dataInstagram = json_decode(file_get_contents($instagramFile), true);
                                     if (!empty($dataInstagram['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'])) :
-                                    $dataInstagram = array_slice($dataInstagram['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'], -5);
+                                    $dataInstagram = array_slice($dataInstagram['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'], 0, 5);
                                     foreach ($dataInstagram as $key => $value) :
                                 ?>
                                 <div class="product">
@@ -237,21 +241,21 @@
                                 if (file_exists($blogFile)) :
                                     $dataBlogFile = json_decode(file_get_contents($blogFile), true);
                                     if (!empty($dataBlogFile['channel']['item'][0])) :
-                                    $dataBlogFile = array_slice($dataBlogFile['channel']['item'], -5);
+                                    $dataBlogFile = array_slice($dataBlogFile['channel']['item'], 0, 5);
                                     foreach ($dataBlogFile as $key => $value) :
                                 ?>
                                 <div class="product">
                                     <figure class="product-image-container">
-                                        <a href="#" class="product-image">
+                                        <a href="<?php echo $value['link'];?>" class="product-image" title="<?php echo $value['title']; ?>">
                                             <img src="<?php echo __grep_image_url($value['contentEncoded']); ?>" alt="<?php echo $value['title']; ?>">
                                         </a>
                                     </figure>
                                     <div class="product-details">
                                         <h2 class="product-title">
-                                            <a href="#"><?php echo $value['title']; ?></a>
+                                            <a href="<?php echo $value['link'];?>" title="<?php echo $value['title']; ?>"><?php echo $value['title']; ?></a>
                                         </h2>
                                         <p class="product-action">
-                                            <?php echo trim(str_replace('&#8230; Continue Reading &#8594;','',strip_tags($value['description']))); ?>
+                                            <?php echo __limit_word(trim(str_replace('&#8230; Continue Reading &#8594;','',strip_tags($value['description']))), 10); ?>
                                         </p>
                                         <div class="product-action">
                                             <a href="<?php echo $value['link'];?>" class="paction add-cart" title="Go to blog!">
