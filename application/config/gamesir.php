@@ -31,3 +31,4 @@ $config['upload']['gallery']['path'] = 'gallery/';
 $config['upload']['slideshow']['path'] = 'slideshow/';
 $config['upload']['testimonial']['path'] = 'testimonial/';
 $config['upload']['events']['path'] = 'events/';
+$config['upload']['marketplace']['path'] = 'marketplace/';

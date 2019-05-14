@@ -40,4 +40,9 @@ class Products_model extends CI_Model {
 		$sql = $this -> db -> query("SELECT * FROM products_tab WHERE gid IN (SELECT gid FROM (SELECT gid FROM products_tab ORDER BY RAND() LIMIT 4) t)", FALSE);
 		return $sql -> result();
 	}
+
+    function __get_marketplace_url($pid) {
+        $sql = $this -> db -> query("SELECT a.purl, b.mlogo, b.mname FROM products_marketplace_tab a JOIN marketplace_tab b ON a.pmid=b.mid WHERE a.purl <> '' AND a.pstatus=1 AND a.ppid=" . $pid, FALSE);
+        return $sql -> result();
+    }
 }

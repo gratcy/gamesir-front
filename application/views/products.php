@@ -111,10 +111,18 @@
                                             <span class="product-price">IDR <?php echo __price_format($data[0] -> gprice); ?></span>
                                         </div><!-- End .price-box -->
                                         <?php if (!empty($data[0] -> gfeatured)) : ?>
-                                        <div class="product-desc">
-                                            <p><?php echo $data[0] -> gfeatured; ?></p>
-                                        </div><!-- End .product-desc -->
+                                            <div class="product-desc">
+                                                <p><?php echo $data[0] -> gfeatured; ?></p>
+                                            </div><!-- End .product-desc -->
                                         <?php endif;?>
+                                        <?php if (count($marketplace) > 0) : ?>
+                                        <div class="product-desc">
+                                            <h1 class="product-title">Get it now!</h1>
+                                            <?php foreach($marketplace as $k => $v) : ?>
+                                                <a href="<?php echo $v -> purl; ?>" target="_blank"><img width="180" src="<?php echo __get_upload_file($v -> mlogo, 6); ?>"/></a>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <?php endif; ?>
                                         <div class="product-single-share mb-4">
                                             <label>Share:</label>
                                             <!-- www.addthis.com share plugin-->
