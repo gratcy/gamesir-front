@@ -31,6 +31,9 @@
                                                 <span class="contact-info-label">Phone:</span><a href="tel:">(+62) 882 1101 0000</a>
                                             </li>
                                             <li>
+                                                <span class="contact-info-label">Whatsapp:</span><a href="https://wa.me/6288211010000" target="_blank">(+62) 882 1101 0000</a>
+                                            </li>
+                                            <li>
                                                 <span class="contact-info-label">Email:</span> <a href="mailto:ask@gamesir.id">ask@gamesir.id</a>
                                             </li>
                                         </ul>
@@ -84,5 +87,33 @@
 
     <!-- Main JS File -->
     <script src="<?php echo base_url('assets/js/main.min.js'); ?>"></script>
+
+<script type="text/javascript">
+    <?php if (!empty($serialno)) : ?>
+        $.post( "<?php echo base_url('guarantee/get-warranty'); ?>", { serialno: "<?php echo $serialno; ?>" })
+          .done(function( data ) {
+            var res = ''
+            if (data.status === 200) {
+                res += '<h3>Produk Anda bergaransi resmi</h3>';
+                res += '<table class="ratings-table">';
+                res += '<tr>';
+                res += '<td><b>Product</b></td><td>Date Order</td><td>End Warranty</td><td>Customer</td><td><b>Status</b></td>';
+                res += '</tr>';
+                res += '<tr>';
+                res += '<td><b>'+data.data.pname+'</b></td>';
+                res += '<td>'+data.data.tdate+'</td>';
+                res += '<td>'+data.data.tguarantee_until+'</td>';
+                res += '<td>'+data.data.cname+'</td>';
+                res += '<td><b>This device in Warranty</b></td>';
+                res += '</tr>';
+                res += '</table>';
+            }
+            else {
+                res += '<h3>Produk Anda tidak ditemukan</h3>';
+            }
+            $('form.form-warranty').append(res)
+          });
+    <?php endif; ?>
+</script>
 </body>
 </html>

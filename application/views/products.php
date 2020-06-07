@@ -50,24 +50,29 @@
                                     <div class="sticky-slider">
                                         <div class="product-slider-container product-item">
                                             <div class="product-single-carousel owl-carousel owl-theme">
-                                                <?php if ($data[0] -> gfile) : ?>
+                                                <?php if (!empty($data[0] -> gfile)) : ?>
                                                 <div class="product-item">
                                                     <img class="product-single-image" src="<?php echo __get_upload_file($data[0] -> gfile,2); ?>" data-zoom-image="<?php echo __get_upload_file($data[0] -> gfile,2); ?>"/>
                                                 </div>
                                                 <?php endif; ?>
-                                                <?php if ($data[0] -> gfile2) : ?>
+                                                <?php if (!empty($data[0] -> gfile2)) : ?>
                                                 <div class="product-item">
                                                     <img class="product-single-image" src="<?php echo __get_upload_file($data[0] -> gfile2,2); ?>" data-zoom-image="<?php echo __get_upload_file($data[0] -> gfile2,2); ?>"/>
                                                 </div>
                                                 <?php endif; ?>
-                                                <?php if ($data[0] -> gfile3) : ?>
+                                                <?php if (!empty($data[0] -> gfile3)) : ?>
                                                 <div class="product-item">
                                                     <img class="product-single-image" src="<?php echo __get_upload_file($data[0] -> gfile3,2); ?>" data-zoom-image="<?php echo __get_upload_file($data[0] -> gfile3,2); ?>"/>
                                                 </div>
                                                 <?php endif; ?>
-                                                <?php if ($data[0] -> gfile4) : ?>
+                                                <?php if (!empty($data[0] -> gfile4)) : ?>
                                                 <div class="product-item">
                                                     <img class="product-single-image" src="<?php echo __get_upload_file($data[0] -> gfile4,2); ?>" data-zoom-image="<?php echo __get_upload_file($data[0] -> gfile4,2); ?>"/>
+                                                </div>
+                                                <?php endif; ?>
+                                                <?php if (!empty($data[0] -> gfile5)) : ?>
+                                                <div class="product-item">
+                                                    <img class="product-single-image" src="<?php echo __get_upload_file($data[0] -> gfile5,2); ?>" data-zoom-image="<?php echo __get_upload_file($data[0] -> gfile5,2); ?>"/>
                                                 </div>
                                                 <?php endif; ?>
                                             </div>
@@ -76,26 +81,31 @@
                                                 <i class="icon-plus"></i>
                                             </span>
                                         </div>
-
+                                        <div style="clear:both;"></div>
                                         <div class="prod-thumbnail row owl-dots transparent-dots" id='carousel-custom-dots'>
-                                            <?php if ($data[0] -> gfile) : ?>
+                                            <?php if (!empty($data[0] -> gfile)) : ?>
                                                 <div class="owl-dot">
                                                     <img src="<?php echo __get_upload_file($data[0] -> gfile,2); ?>"/>
                                                 </div>
                                             <?php endif; ?>
-                                            <?php if ($data[0] -> gfile2) : ?>
+                                            <?php if (!empty($data[0] -> gfile2)) : ?>
                                                 <div class="owl-dot">
                                                     <img src="<?php echo __get_upload_file($data[0] -> gfile2,2); ?>"/>
                                                 </div>
                                             <?php endif; ?>
-                                            <?php if ($data[0] -> gfile3) : ?>
+                                            <?php if (!empty($data[0] -> gfile3)) : ?>
                                                 <div class="owl-dot">
                                                     <img src="<?php echo __get_upload_file($data[0] -> gfile3,2); ?>"/>
                                                 </div>
                                             <?php endif; ?>
-                                            <?php if ($data[0] -> gfile4) : ?>
+                                            <?php if (!empty($data[0] -> gfile4)) : ?>
                                                 <div class="owl-dot">
                                                     <img src="<?php echo __get_upload_file($data[0] -> gfile4,2); ?>"/>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if (!empty($data[0] -> gfile5)) : ?>
+                                                <div class="owl-dot">
+                                                    <img src="<?php echo __get_upload_file($data[0] -> gfile5,2); ?>"/>
                                                 </div>
                                             <?php endif; ?>
                                         </div>
@@ -157,7 +167,7 @@
                             <?php foreach($related as $k => $v) : ?>
                                 <div class="product">
                                     <figure class="product-image-container">
-                                        <a href="<?php echo base_url('product/' . $v -> gid);?>" class="product-image">
+                                        <a href="<?php echo base_url('product/' . $v -> gslug);?>" class="product-image">
                                             <img src="<?php echo __get_upload_file($v -> gfile,2); ?>" alt="<?php echo $v -> gtitle; ?>">
                                         </a>
                                         <a href="<?php echo base_url('overview/1/' . $v -> gid);?>" class="btn-quickview">Quickview</a>
@@ -167,14 +177,14 @@
                                     </figure>
                                     <div class="product-details">
                                         <h2 class="product-title">
-                                            <a href="<?php echo base_url('product/' . $v -> gid);?>"> <?php echo $v -> gtitle; ?></a>
+                                            <a href="<?php echo base_url('product/' . $v -> gslug);?>"> <?php echo $v -> gtitle; ?></a>
                                         </h2>
                                         <div class="price-box">
                                             <span class="product-price">IDR <?php echo __price_format($v -> gprice); ?></span>
                                         </div><!-- End .price-box -->
 
                                         <div class="product-action">
-                                            <a href="<?php echo base_url('product/' . $v -> gid);?>" class="paction add-cart" title="Detail of <?php echo $v -> gtitle; ?>">
+                                            <a href="<?php echo base_url('product/' . $v -> gslug);?>" class="paction add-cart" title="Detail of <?php echo $v -> gtitle; ?>">
                                                 <span>Detail of <?php echo $v -> gtitle; ?></span>
                                             </a>
                                         </div><!-- End .product-action -->

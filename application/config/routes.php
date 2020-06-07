@@ -54,9 +54,14 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['overview/(:num)/(:any)'] = 'home/home/overview/$1/$2';
+$route['product/(:any)'] = 'products/home/index/$1';
+$route['collections/(all)'] = 'products/home/products/$1';
+$route['collections/(:any)/?(:num)?'] = 'products/home/products/$1';
+$route['collections-list/(all)'] = 'products/home/products_list/$1';
+$route['collections-list/(:any)/?(:num)?'] = 'products/home/products_list/$1';
+$route['guarantee/check'] = 'guarantee/home/index';
+$route['guarantee/get-warranty'] = 'guarantee/home/get_warranty';
 $route['page/(:num)'] = 'pages/home/index/$1';
-$route['product/(:num)'] = 'products/home/index/$1';
-$route['collections/all'] = 'products/home/products/$1';
-$route['collections/(:num)/?(:num)?'] = 'products/home/products/$1';
-$route['collections-list/all'] = 'products/home/products_list/$1';
-$route['collections-list/(:num)/?(:num)?'] = 'products/home/products_list/$1';
+$route['(:any)/(:any)'] = 'pages/home/index/$2';
+$route['(:any)'] = 'pages/home/index/$1';
+

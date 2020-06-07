@@ -41,15 +41,21 @@
                 </div><!-- End .category-list -->
 
                 <div class="main-content">
-                    <div class="banner banner-cat mb-3" style="background-image: url('<?php echo base_url('assets/images/slider/slide-1.jpg'); ?>');">
+                    <?php if ($id != 0) : ?>
+                    <div class="banner banner-cat mb-3" style="background-image: url('<?php echo __get_cover_collection($id); ?>'">
                         <div class="banner-content container-fluid">
-                            <h2 class="banner-subtitle">check out over <span>200+</span></h2>
+                            <?php if (!empty($category[0] -> ctitle) && !empty($category[0] -> csubtitle)) : ?>
+                            <h2 class="banner-subtitle"><?php echo $category[0] -> ctitle; ?></h2>
                             <h1 class="banner-title">
-                                INCREDIBLE deals
+                                <?php echo $category[0] -> csubtitle; ?>
                             </h1>
                             <a href="#" class="btn btn-dark">Shop Now</a>
+                            <?php endif; ?>
                         </div><!-- End .banner-content -->
                     </div><!-- End .banner -->
+                    <?php else : ?>
+                        <br />
+                    <?php endif ?>
 
                     <div class="container-fluid">
                         <nav class="toolbox">
@@ -87,21 +93,27 @@
                             <div class="col-6 col-md-4 col-lg-3 col-xl-5col">
                                 <div class="product">
                                     <figure class="product-image-container">
-                                        <a href="<?php echo base_url('product/' . $v -> gid);?>" class="product-image">
+                                        <a href="<?php echo base_url('product/' . $v -> gslug);?>" class="product-image">
                                             <img src="<?php echo __get_upload_file($v -> gfile,2); ?>" alt="product">
                                         </a>
                                         <a href="<?php echo base_url('overview/1/' . $v -> gid);?>" class="btn-quickview">Quickview</a>
+                                        <?php if ($v -> gnew == 1) : ?>
+                                        <span class="product-label label-new">New</span>
+                                        <?php endif; ?>
+                                        <?php if ($v -> gisready == 0) : ?>
+                                        <span class="product-label label-sale">Out of stock!</span>
+                                        <?php endif; ?>
                                     </figure>
                                     <div class="product-details">
                                         <h2 class="product-title">
-                                            <a href="<?php echo base_url('product/' . $v -> gid);?>"><?php echo $v -> gtitle; ?></a>
+                                            <a href="<?php echo base_url('product/' . $v -> gslug);?>"><?php echo $v -> gtitle; ?></a>
                                         </h2>
                                         <div class="price-box">
                                             <span class="product-price">IDR <?php echo __price_format($v -> gprice); ?></span>
                                         </div><!-- End .price-box -->
 
                                         <div class="product-action">
-                                            <a href="<?php echo base_url('product/' . $v -> gid);?>" class="paction add-cart" title="Detail of <?php echo $v -> gtitle; ?>">
+                                            <a href="<?php echo base_url('product/' . $v -> gslug);?>" class="paction add-cart" title="Detail of <?php echo $v -> gtitle; ?>">
                                                 <span>Detail of <?php echo $v -> gtitle; ?></span>
                                             </a>
                                         </div><!-- End .product-action -->

@@ -42,7 +42,7 @@
 
                 <div class="main-content">
                     <div class="container-fluid">
-                        <div class="banners-group mb-1 mt-3">
+                        <div class="banners-group mb-1 mt-3" style="display: none">
                             <div class="row row-sm">
                                 <div class="col-md-6">
                                     <div class="banner banner-image">
@@ -61,7 +61,7 @@
                                 </div><!-- End .col-sm-6 -->
                             </div><!-- End .row -->
                         </div><!-- End .banners-group -->
-
+<br />
                         <nav class="toolbox">
                             <div class="toolbox-left">
                                 <div class="toolbox-item toolbox-sort">
@@ -96,10 +96,16 @@
                         <?php foreach($data as $k => $v) : ?>
                         <div class="product product-list">
                             <figure class="product-image-container">
-                                <a href="<?php echo base_url('product/' . $v -> gid);?>" class="product-image">
+                                <a href="<?php echo base_url('product/' . $v -> gslug);?>" class="product-image">
                                     <img src="<?php echo __get_upload_file($v -> gfile,2); ?>" alt="product">
                                 </a>
                                 <a href="<?php echo base_url('overview/1/' . $v -> gid);?>" class="btn-quickview">Quickview</a>
+                                <?php if ($v -> gnew == 1) : ?>
+                                <span class="product-label label-new">New</span>
+                                <?php endif; ?>
+                                <?php if ($v -> gisready == 0) : ?>
+                                <span class="product-label label-sale">Out of stock!</span>
+                                <?php endif; ?>
                             </figure>
                             <div class="product-details">
                                 <div class="ratings-container">
@@ -108,17 +114,17 @@
                                     </div><!-- End .product-ratings -->
                                 </div><!-- End .product-container -->
                                 <h2 class="product-title">
-                                    <a href="<?php echo base_url('product/' . $v -> gid);?>">Baseball Cap</a>
+                                    <a href="<?php echo base_url('product/' . $v -> gslug);?>">Baseball Cap</a>
                                 </h2>
                                 <div class="product-desc">
-                                    <p><?php echo $v -> gfeatured; ?> <a href="<?php echo base_url('product/' . $v -> gid);?>">Learn More</a></p>
+                                    <p><?php echo $v -> gfeatured; ?> <a href="<?php echo base_url('product/' . $v -> gslug);?>">Learn More</a></p>
                                 </div><!-- End .product-desc -->
                                 <div class="price-box">
                                     <span class="product-price">IDR <?php echo __price_format($v -> gprice); ?></span>
                                 </div><!-- End .price-box -->
 
                                 <div class="product-action">
-                                    <a href="<?php echo base_url('product/' . $v -> gid);?>" class="paction add-cart" title="Detail of <?php echo $v -> gtitle; ?>">
+                                    <a href="<?php echo base_url('product/' . $v -> gslug);?>" class="paction add-cart" title="Detail of <?php echo $v -> gtitle; ?>">
                                         <span>Detail of <?php echo $v -> gtitle; ?></span>
                                     </a>
                                 </div><!-- End .product-action -->

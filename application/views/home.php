@@ -58,24 +58,27 @@
                             <?php foreach($products as $k => $v) : ?>
                                 <div class="product">
                                     <figure class="product-image-container">
-                                        <a href="<?php echo base_url('product/' . $v -> gid);?>" class="product-image">
+                                        <a href="<?php echo base_url('product/' . $v -> gslug);?>" class="product-image">
                                             <img src="<?php echo __get_upload_file($v -> gfile,2); ?>" alt="<?php echo $v -> gtitle; ?>">
                                         </a>
                                         <a href="<?php echo base_url('overview/1/' . $v -> gid);?>" class="btn-quickview">Quickview</a>
                                         <?php if ($v -> gnew == 1) : ?>
                                         <span class="product-label label-new">New</span>
                                         <?php endif; ?>
+                                        <?php if ($v -> gisready == 0) : ?>
+                                        <span class="product-label label-sale">Out of stock!</span>
+                                        <?php endif; ?>
                                     </figure>
                                     <div class="product-details">
                                         <h2 class="product-title">
-                                            <a href="<?php echo base_url('product/' . $v -> gid);?>"> <?php echo $v -> gtitle; ?></a>
+                                            <a href="<?php echo base_url('product/' . $v -> gslug);?>"> <?php echo $v -> gtitle; ?></a>
                                         </h2>
                                         <div class="price-box">
                                             <span class="product-price">IDR <?php echo __price_format($v -> gprice); ?></span>
                                         </div><!-- End .price-box -->
 
                                         <div class="product-action">
-                                            <a href="<?php echo base_url('product/' . $v -> gid);?>" class="paction add-cart" title="Detail of <?php echo $v -> gtitle; ?>">
+                                            <a href="<?php echo base_url('product/' . $v -> gslug);?>" class="paction add-cart" title="Detail of <?php echo $v -> gtitle; ?>">
                                                 <span>Detail of <?php echo $v -> gtitle; ?></span>
                                             </a>
                                         </div><!-- End .product-action -->
@@ -87,16 +90,16 @@
                                 <div class="row row-sm">
                                     <div class="col-sm-6">
                                         <div class="banner banner-image">
-                                            <a href="#">
-                                                <img src="<?php echo base_url('assets/images/banners/banner-5.jpg'); ?>" alt="banner">
+                                            <a href="https://gamesir.id/product/18">
+                                                <img src="https://cdn.gamesir.id/ads/Gamesir_Banner_800x200__GameSir_F2.jpg" alt="GameSir F2">
                                             </a>
                                         </div><!-- End .banner -->
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
                                         <div class="banner banner-image">
-                                            <a href="#">
-                                                <img src="<?php echo base_url('assets/images/banners/banner-6.jpg'); ?>" alt="banner">
+                                            <a href="https://gamesir.id/product/16">
+                                                <img src="https://cdn.gamesir.id/ads/Gamesir_Banner_800x200__GameSir_G5.jpg" alt="GameSir G5">
                                             </a>
                                         </div><!-- End .banner -->
                                     </div><!-- End .col-sm-6 -->
@@ -116,27 +119,30 @@
                                 if (file_exists($YoutubeFile)) :
                                     $dataYoutube = json_decode(file_get_contents($YoutubeFile), true);
                                     $finalDataYoutube = [];
-                                    foreach ($dataYoutube as $key => $value) :
-                                        if (!empty($value['kind'])) $finalDataYoutube[] = $value;
+                                    foreach ($dataYoutube['entry'] as $key => $value) :
+                                        $value['id'] = str_replace('yt:video:', '', $value['id']);
+                                        if (!empty($value['id'])) $finalDataYoutube[] = $value;
                                     endforeach;
                                     $finalDataYoutube = array_slice($finalDataYoutube, 0, 5);
                                     foreach ($finalDataYoutube as $key => $value) :
                                 ?>
                                 <div class="product">
                                     <figure class="product-image-container">
-                                        <iframe width="309" height="309" src="https://www.youtube.com/embed/<?php echo $value['snippet']['resourceId']['videoId']; ?>?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                        <a href="<?php echo base_url('overview/2/' . $value['snippet']['resourceId']['videoId']);?>" class="btn-quickview">Quickview</a>
+                                        <a href="#" class="product-image">
+                                            <img src="https://img.youtube.com/vi/<?php echo $value['id']; ?>/mqdefault.jpg" alt="<?php echo limit_text($value['title'],5); ?>">
+                                        </a>
+                                        <a href="<?php echo base_url('overview/2/' . $value['id']);?>" class="btn-quickview">Quickview</a>
                                     </figure>
                                     <div class="product-details">
                                         <h2 class="product-title">
-                                            <a href="#"><?php echo $value['snippet']['title']; ?></a>
+                                            <a href="#"><?php echo $value['title']; ?></a>
                                         </h2>
                                         <div class="price-box">
-                                            <span class="product-price"><?php echo $value['snippet']['channelTitle']; ?></span>
+                                            <span class="product-price"><?php echo $value['title']; ?></span>
                                         </div><!-- End .price-box -->
 
                                         <div class="product-action">
-                                            <a href="<?php echo base_url('overview/2/' . $value['snippet']['resourceId']['videoId']);?>" class="btn-quickview" title="Quickview">
+                                            <a href="<?php echo base_url('overview/2/' . $value['id']);?>" class="btn-quickview" title="Quickview">
                                                 <span>Quickview</span>
                                             </a>
                                         </div><!-- End .product-action -->
@@ -152,16 +158,16 @@
                                 <div class="row row-sm">
                                     <div class="col-sm-6">
                                         <div class="banner banner-image">
-                                            <a href="#">
-                                                <img src="<?php echo base_url('assets/images/banners/banner-7.jpg'); ?>" alt="banner">
+                                            <a href="https://gamesir.id/product/12">
+                                                <img src="https://cdn.gamesir.id/ads/Gamesir_Banner_800x200__GameSir_T4_Banner.jpg" alt="GameSir T4">
                                             </a>
                                         </div><!-- End .banner -->
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
                                         <div class="banner banner-image">
-                                            <a href="#">
-                                                <img src="<?php echo base_url('assets/images/banners/banner-8.jpg'); ?>" alt="banner">
+                                            <a href="https://gamesir.id/product/9">
+                                                <img src="https://cdn.gamesir.id/ads/Gamesir_Banner_800x200__GameSir_VX_Banner.jpg" alt="GameSir VX">
                                             </a>
                                         </div><!-- End .banner -->
                                     </div><!-- End .col-sm-6 -->
@@ -213,16 +219,16 @@
                                 <div class="row row-sm">
                                     <div class="col-sm-6">
                                         <div class="banner banner-image">
-                                            <a href="#">
-                                                <img src="<?php echo base_url('assets/images/banners/banner-9.jpg'); ?>" alt="banner">
+                                            <a href="https://gamesir.id/product/18">
+                                                <img src="https://cdn.gamesir.id/ads/Gamesir_Banner_800x200__GameSir_F2.jpg" alt="GameSir F2">
                                             </a>
                                         </div><!-- End .banner -->
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
                                         <div class="banner banner-image">
-                                            <a href="#">
-                                                <img src="<?php echo base_url('assets/images/banners/banner-10.jpg'); ?>" alt="banner">
+                                            <a href="https://gamesir.id/product/16">
+                                                <img src="https://cdn.gamesir.id/ads/Gamesir_Banner_800x200__GameSir_G5.jpg" alt="GameSir G5">
                                             </a>
                                         </div><!-- End .banner -->
                                     </div><!-- End .col-sm-6 -->
@@ -275,16 +281,16 @@
                                 <div class="row row-sm">
                                     <div class="col-sm-6">
                                         <div class="banner banner-image">
-                                            <a href="#">
-                                                <img src="<?php echo base_url('assets/images/banners/banner-11.jpg'); ?>" alt="banner">
+                                            <a href="https://gamesir.id/product/12">
+                                                <img src="https://cdn.gamesir.id/ads/Gamesir_Banner_800x200__GameSir_T4_Banner.jpg" alt="GameSir T4">
                                             </a>
                                         </div><!-- End .banner -->
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
                                         <div class="banner banner-image">
-                                            <a href="#">
-                                                <img src="<?php echo base_url('assets/images/banners/banner-12.jpg'); ?>" alt="banner">
+                                            <a href="https://gamesir.id/product/9">
+                                                <img src="https://cdn.gamesir.id/ads/Gamesir_Banner_800x200__GameSir_VX_Banner.jpg" alt="GameSir VX">
                                             </a>
                                         </div><!-- End .banner -->
                                     </div><!-- End .col-sm-6 -->

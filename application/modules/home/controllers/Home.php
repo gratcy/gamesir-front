@@ -28,7 +28,7 @@ class Home extends MX_Controller {
             if (file_exists($instagramFile)) :
                 $dataInstagram = json_decode(file_get_contents($instagramFile), true);
                 if (!empty($dataInstagram['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'])) :
-                	$dataInstagram = array_slice($dataInstagram['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'], -5);
+                    $dataInstagram = array_slice($dataInstagram['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'], 0, 5);
 					$body .= '<img src="'.$dataInstagram[$id]['node']['display_url'].'" style="min-width: 600px">';
             	endif;
             endif;

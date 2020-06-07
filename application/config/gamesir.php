@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['site']['title'] = getenv('SITE_TITLE');
+$config['site']['description'] = getenv('SITE_DESCRIPTION');
 $config['base_url'] = getenv('BASEURL');
 $config['upload']['host'] = getenv('ASSETS_URL');
 $config['upload']['media']['path'] = '/';
@@ -32,3 +33,4 @@ $config['upload']['slideshow']['path'] = 'slideshow/';
 $config['upload']['testimonial']['path'] = 'testimonial/';
 $config['upload']['events']['path'] = 'events/';
 $config['upload']['marketplace']['path'] = 'marketplace/';
+$config['upload']['category_cover']['path'] = 'category-cover/';

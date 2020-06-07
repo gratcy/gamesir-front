@@ -2962,7 +2962,7 @@ body .header.header-white {
 }
 
 .banner .banner-title {
-    color: #010204;
+    color: #fff;
     font: 800 3.5rem/1.1 "Poppins", sans-serif;
     margin-bottom: 2rem;
     letter-spacing: -.025rem;
@@ -2970,7 +2970,7 @@ body .header.header-white {
 }
 
 .banner .banner-subtitle {
-    color: #010204;
+    color: #fff;
     font: 700 1.8rem/1.1 "Poppins", sans-serif;
     letter-spacing: 0;
     text-transform: uppercase;
@@ -3186,6 +3186,17 @@ body .header.header-white {
 
 .icon-phone:before {
     content: '\e80a'
+}
+
+.icon-whatsapp {
+    background-image: url(https://static.whatsapp.net/rsrc.php/yv/r/-r3j-x8ZnM7.svg);
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    height: 20px;
+    background-size: cover;
+    width: 20px;
+    margin-right: 5px!important;
 }
 
 .icon-down-dir:before {
@@ -6653,14 +6664,14 @@ a:focus {
 }
 
 .transparent-dots {
-    position: absolute;
+    /*position: absolute;*/
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
     margin: 0;
     top: 1rem;
     padding: 0;
     opacity: .5;
-    width: 80px;
+    /*width: 80px;*/
     z-index: 99
 }
 
@@ -6700,7 +6711,10 @@ a:focus {
 }
 
 .prod-thumbnail .owl-dot {
-    box-sizing: border-box
+    box-sizing: border-box;
+    display: inline;
+    position: relative;
+    width: 80px;
 }
 
 .single-info-list {

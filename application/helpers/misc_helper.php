@@ -23,8 +23,10 @@ function __get_upload_file($file, $type=1) {
         return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['testimonial']['path'] . $file;
     elseif ($type == 5)
         return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['events']['path'] . $file;
-    else
+    elseif ($type == 6)
         return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['marketplace']['path'] . $file;
+    else
+        return $CI -> config -> config['upload']['host'] . $CI -> config -> config['upload']['category_cover']['path'] . $file;
 }
 
 function __get_month($date) {
@@ -46,11 +48,19 @@ function __get_categories_products() {
     $res = '<ul>';
     foreach ($menus as $key => $v) {
         $res .= '<li>';
-        $res .= '<a href="'.base_url('collections/' . $v -> cid).'">'.strtoupper($v -> cname).'</a>';
+        $res .= '<a href="'.base_url('collections/' . $v -> cslug).'">'.strtoupper($v -> cname).'</a>';
         $res .= '</li>';
     }
     $res .= '</ul>';
     return $res;
+}
+
+function __get_cover_collection($id) {
+    $CI =& get_instance();
+    $CI -> load -> model('product/Products_model');
+    $data = $CI -> Products_model -> __get_category_cover($id);
+    $cover = __get_upload_file($data[0] -> ccover,7);
+    return $cover;
 }
 
 function __get_menus() {
@@ -66,13 +76,13 @@ function __get_menus() {
             $res .= '<ul>';
             foreach ($childs as $k1 => $v1) {
                 $res .= '<li>';
-                $res .= '<a href="'.base_url('page/' . $v1 -> pid).'">'.$v1 -> ptitle.'</a>';
+                $res .= '<a href="'.base_url($v -> pslug . '/' . $v1 -> pslug).'">'.$v1 -> ptitle.'</a>';
                 $res .= '</li>';
             }
             $res .= '</ul>';
         }
         else {
-            $res .= '<a href="'.base_url('page/' . $v -> pid).'">'.strtoupper($v -> ptitle).'</a>';
+            $res .= '<a href="'.base_url($v -> pslug . '/' . $v -> pslug).'">'.strtoupper($v -> ptitle).'</a>';
         }
         $res .= '</li>';
     }
@@ -80,7 +90,7 @@ function __get_menus() {
 }
 
 function __grep_image_url($html) {
-    preg_match_all("/src=[\"\']?([^\"\']?.*(png|jpg|gif))[\"\']?/i",$html, $result);
+    preg_match_all("/src=[\"\']?([^\"\']?.*(png|jpg|jpeg|gif))[\"\']?/i",$html, $result);
     if (!empty($result[1][0])) {
         return $result[1][0];
     }
@@ -120,6 +130,60 @@ function limit_text($text, $limit) {
     }
     return $text;
 }
+
 function __price_format($price) {
     return ($price / 1000) . 'K';
+}
+
+function __generate_schema($detail, $type) {
+    $data = [];
+    if ($type === 1) {
+        $data = [
+            ["@context" => "http://schema.org/"],
+            ["@graph" => [
+                [
+                    "@type" => ["LocalBusiness", "Organization"],
+                    "name" => $detail['title'],
+                    "url" => base_url($_SERVER['REQUEST_URI']),
+                    "image" => "https://gamesir.id/assets/images/logo-white-3.png",
+                    "email" => "ask@gamesir.id",
+                    "contactPoint" => [
+                        "@type" => "ContactPoint",
+                        "telephone" => "+62-882-1101-0000",
+                        "contactType" => "Customer service",
+                        "email" => "ask@gamesir.id",
+                    ],
+                    "openingHours" => "Mo,Tu,We,Th,Fr,Sa 09:00-18:00",
+                    "openingHoursSpecification" => [
+                        "@type" => "OpeningHoursSpecification",
+                        "dayOfWeek" => [
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday",
+                            "Saturday"
+                        ],
+                        "opens" => "09:00",
+                        "closes" => "18:00"
+                    ]
+                ],
+                [
+                    "@type" => "WebSite",
+                    "author" => "GameSir Indonesia Team",
+                    "name" => $detail['title'],
+                    "description" => $detail['description'],
+                    "alternateName" => $detail['title'],
+                    "url" => base_url($_SERVER['REQUEST_URI']),
+                    "@id" => base_url($_SERVER['REQUEST_URI']) . '#website',
+                    "contactPoint" => [
+                        "@type" => "ContactPoint",
+                        "telephone" => "+62-882-1101-0000",
+                        "contactType" => "Customer service"
+                    ]
+                ]
+            ]]
+        ];
+    }
+    return json_encode($data);
 }

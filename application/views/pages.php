@@ -38,8 +38,6 @@
                         </li>
                     </ul>
                 </div><!-- End .category-list -->
-
-
                 <div class="main-content">
                     <div class="container-fluid">
                         <div class="heading mb-4">
@@ -47,6 +45,15 @@
                             <h2 class="title"><?php echo $title; ?></h2>
                           <br />
                             <?php echo $data[0] -> pcontent;?>
+                            <?php if ($data[0] -> pid == getenv('GUARANTEE_PAGE_ID')) { ?>
+                                <form action="<?php echo base_url('guarantee/check'); ?>" method="post" class="form-warranty">
+                                    <table class="ratings-table">
+                                        <tr>
+                                            <td>Serial No.</td><td><input style="width: 90%" type="text" class="form-input" name="serialno" placeholder="Input Serial Number" value="<?php echo $serialno; ?>"></td><td><input class="form-input" type="submit" name="submit" value="Go!" style="width: 50%"></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            <?php } ?>
                         </div><!-- End .heading -->
                     </div><!-- End .container-fluid -->
                 </div><!-- End .main-content -->
