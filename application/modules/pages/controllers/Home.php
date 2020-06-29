@@ -10,10 +10,15 @@ class Home extends MX_Controller {
 
 	public function index($id)
 	{
-		$data['data'] = $this -> Pages_model -> __get_pages_detail($id);
-		$data['title'] = $data['data'][0] -> ptitle;
-		$data['desc'] = $data['data'][0] -> ptitle;
-		$data['serialno'] = $this -> input -> get('serialno');
+		$data = $this->caching_lib->get('pages:' . $id);
+		if (empty($data->data)) {
+			$data = [];
+			$data['data'] = $this -> Pages_model -> __get_pages_detail($id);
+			$data['title'] = $data['data'][0] -> ptitle;
+			$data['desc'] = $data['data'][0] -> ptitle;
+			$data['serialno'] = $this -> input -> get('serialno');
+			$this->cache->memcached->save('pages:' . $id, json_encode($data), 3600 * 24);
+		}
 		$this->load->view('pages', $data);
 	}
 }
